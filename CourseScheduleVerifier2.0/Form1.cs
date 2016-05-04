@@ -22,11 +22,13 @@ namespace CourseScheduleVerifier2._0
         public struct courseDetails
         {
 
-
+            public string section;
             public string instructor;
             public string room;
             public string day;
             public string time;
+            public string key;
+            public Boolean tba;
 
         }
 
@@ -39,6 +41,7 @@ namespace CourseScheduleVerifier2._0
        
         char currColumn;
         int currRow;
+        
 
         public Form1()
         {
@@ -59,31 +62,63 @@ namespace CourseScheduleVerifier2._0
                 string filePath = ofd.FileName;
                 
                 //Loops through each column and row containing pertinent data to find conflicting classes
-                for (int i = 4; i <= 13; i++)
+                for (int i = 4; i <= 17; i++)
                 {
                     currRow = i;
                     if (GetCellValues(filePath, "Sheet1", ("B" + currRow).ToString()) == "CSC" || (GetCellValues(filePath, "Sheet1", ("B" + currRow).ToString()) == "SCI"))
                     {
+                        
 
 
                         courseDetails courseDetails1;
 
-
+                        courseDetails1.key = (classCounter + 1).ToString();
+                        courseDetails1.section = ((GetCellValues(filePath, "Sheet1", "D" + currRow)));
                         courseDetails1.instructor = ((GetCellValues(filePath, "Sheet1", "G" + currRow)) + (GetCellValues(filePath, "Sheet1", "H" + currRow)));
-                        courseDetails1.room = ((GetCellValues(filePath, "Sheet1", "K" + currRow)) + (GetCellValues(filePath, "Sheet1", "L" + currRow)));
+                        courseDetails1.room = ((GetCellValues(filePath, "Sheet1", "K" + currRow)) + (GetCellValues(filePath, "Sheet1", "L" + currRow)));                      
+                        if (((GetCellValues(filePath, "Sheet1", "K" + currRow)) == "tba") || ((GetCellValues(filePath, "Sheet1", "K" + currRow)) == "Tba") || ((GetCellValues(filePath, "Sheet1", "K" + currRow)) == "TBA"))
+                        {
+                            courseDetails1.tba = true;
+                        }  
+                        else
+                        {
+                            courseDetails1.tba = false;
+                        }
                         courseDetails1.day = ((GetCellValues(filePath, "Sheet1", "O" + currRow)) + (GetCellValues(filePath, "Sheet1", "P" + currRow)) + (GetCellValues(filePath, "Sheet1", "Q" + currRow)) + (GetCellValues(filePath, "Sheet1", "R" + currRow)) + (GetCellValues(filePath, "Sheet1", "S" + currRow)));
-                        courseDetails1.time = ((GetCellValues(filePath, "Sheet1", "M" + currRow)) + (GetCellValues(filePath, "Sheet1", "N" + currRow)));
+                        courseDetails1.time = ((GetCellValues(filePath, "Sheet1", "M" + currRow)) + " -" + (GetCellValues(filePath, "Sheet1", "N" + currRow)));
 
-                        courseList.Add(courseDetails1);                       
-                        
+                        if (courseDetails1.tba == false)
+                        {
+                            courseList.Add(courseDetails1);
+                            classCounter = classCounter + 1;
+                        }
+                                                                    
                     }
                 }
 
-                for (int j = 0; j < courseList.Count; j++)
-                {
-                    listBox1.Items.Add(courseList[j].instructor + courseList[j].room + courseList[j].day + courseList[j].time);
+                
+                if(classCounter > 1)
+                {                          
+                    for (int j = 0; j < classCounter; j++)
+                    {
+                        
+                        
 
+                            if ((courseList[classCounter - 1].instructor == courseList[j].instructor) && (courseList[classCounter - 1].day == courseList[j].day) && (courseList[classCounter - 1].time == courseList[j].time))
+                            {
+                                listBox1.Items.Add("Section = " + courseList[classCounter - 1].section + ", " + courseList[classCounter - 1].instructor + ", " + courseList[classCounter - 1].room + ", " + courseList[classCounter - 1].day + ", " + courseList[classCounter - 1].time);
+                                return;
+                            }
+                            else
+                            {
+                                listBox1.Items.Add("There are no conflicting classes");
+                            }
+                        
+                    }                                                                            
                 }
+                 
+                 
+                 
             }
         }
 
@@ -162,6 +197,11 @@ namespace CourseScheduleVerifier2._0
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
