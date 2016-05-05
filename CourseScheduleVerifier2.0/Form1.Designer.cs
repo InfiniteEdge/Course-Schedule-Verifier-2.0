@@ -31,7 +31,8 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Import = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.clear = new System.Windows.Forms.Button();
+            this.remove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
@@ -62,22 +63,33 @@
             this.Import.UseVisualStyleBackColor = true;
             this.Import.Click += new System.EventHandler(this.Import_Click);
             // 
-            // button2
+            // clear
             // 
-            this.button2.Location = new System.Drawing.Point(379, 451);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Clear";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.clear.Location = new System.Drawing.Point(286, 451);
+            this.clear.Name = "clear";
+            this.clear.Size = new System.Drawing.Size(75, 23);
+            this.clear.TabIndex = 3;
+            this.clear.Text = "Clear";
+            this.clear.UseVisualStyleBackColor = true;
+            this.clear.Click += new System.EventHandler(this.clear_Click);
+            // 
+            // remove
+            // 
+            this.remove.Location = new System.Drawing.Point(393, 451);
+            this.remove.Name = "remove";
+            this.remove.Size = new System.Drawing.Size(75, 23);
+            this.remove.TabIndex = 4;
+            this.remove.Text = "Remove";
+            this.remove.UseVisualStyleBackColor = true;
+            this.remove.Click += new System.EventHandler(this.remove_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 571);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.remove);
+            this.Controls.Add(this.clear);
             this.Controls.Add(this.Import);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);
@@ -94,7 +106,8 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Import;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button clear;
+        private System.Windows.Forms.Button remove;
     }
 }
 
