@@ -12,6 +12,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.IO;
+using Color = System.Drawing.Color;
 
 
 
@@ -42,13 +43,13 @@ namespace CourseScheduleVerifier2._0
        
         //Keeps track of the current row to grab all the data in the specified row
         int currRow;
+
+        
         
 
         public Form1()
         {
             InitializeComponent();
-            clear.Enabled = false;
-            remove.Enabled = false;
         }
 
         private void Import_Click(object sender, EventArgs e)
@@ -69,6 +70,12 @@ namespace CourseScheduleVerifier2._0
             {
 
                 string filePath = ofd.FileName;
+                
+                if (bw.IsBusy != true)
+                {
+                    bw.RunWorkerAsync();
+                }
+               
                 
                 //Loops through each column and row containing pertinent data to find conflicting classes and adds those conflictions to a List Box
                 for (int i = 4; i <= 17; i++)
@@ -137,6 +144,7 @@ namespace CourseScheduleVerifier2._0
                 }       
                                                
             }
+            
         }
 
         public static string GetCellValues(string fileName, string sheetName, string addressName)
@@ -210,18 +218,20 @@ namespace CourseScheduleVerifier2._0
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            fIleToolStripMenuItem.ForeColor = Color.Orange;
+            clear.Enabled = false;
+            remove.Enabled = false;          
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         //Clears the list box in order to remove all conflicting classes as they are fixed
         private void clear_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();  
+            listBox1.Items.Clear();
         }
 
         //Removes the selected item in order to remove specific conflicting classes as they are fixed 
@@ -230,5 +240,38 @@ namespace CourseScheduleVerifier2._0
             int removeNumber = listBox1.SelectedIndex;
             listBox1.Items.Remove(listBox1.SelectedItem);
         }
+
+        private void fIleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Import_Click(sender, e);
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        {          
+            
+        }     
+
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            this.label2.Text = (e.ProgressPercentage.ToString() + "%");
+            this.progressBar1.Increment(e.ProgressPercentage);
+        }
+
+        
     }
 }
