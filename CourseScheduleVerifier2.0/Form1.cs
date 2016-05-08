@@ -69,13 +69,7 @@ namespace CourseScheduleVerifier2._0
             if (ofd.ShowDialog() == DialogResult.OK)
             {
 
-                string filePath = ofd.FileName;
-                
-                if (bw.IsBusy != true)
-                {
-                    bw.RunWorkerAsync();
-                }
-               
+                string filePath = ofd.FileName;              
                 
                 //Loops through each column and row containing pertinent data to find conflicting classes and adds those conflictions to a List Box
                 for (int i = 4; i <= 17; i++)
@@ -171,7 +165,7 @@ namespace CourseScheduleVerifier2._0
                     {
                         value = theCell.InnerText;
                     }
-
+                    
                     if (theCell.DataType != null)
                     {
                         switch (theCell.DataType.Value)
@@ -213,12 +207,10 @@ namespace CourseScheduleVerifier2._0
                 }
             }
             return value;
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            fIleToolStripMenuItem.ForeColor = Color.Orange;
             clear.Enabled = false;
             remove.Enabled = false;          
         }
@@ -256,22 +248,22 @@ namespace CourseScheduleVerifier2._0
            
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            MessageBox.Show("Indigo Surf Logic is a modern software development team that began in early 2016. Founded on integrity and built to excel in today's rapidly evolving society, our mission is to provide the fastest solutions with precision and accuracy. We achieve this with constant communication between our crew and clients as well a passion for providing perfect products tailored to meet the user's needs. When life's a beach, go Indigo Surf.", "About Indigo Surf Logic");
         }
 
-        private void bw_DoWork(object sender, DoWorkEventArgs e)
-        {          
-            
-        }     
-
-        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.label2.Text = (e.ProgressPercentage.ToString() + "%");
-            this.progressBar1.Increment(e.ProgressPercentage);
-        }
-
-        
+            MessageBox.Show("Step 1: Make sure all sheets in excel document are named 'Sheet1' exactly as shown." + Environment.NewLine + Environment.NewLine +
+                            "Step 2: Specify how many rows you want checked in the spreadsheet. To make this easy, just enter in 100 and it will check all rows." + Environment.NewLine + Environment.NewLine +
+                            "Step 3: Click the import button and navigate to your course schedule" + Environment.NewLine + Environment.NewLine + 
+                            "Step 4: Once the file is selected, the program will check for conflicts and display them to the textbox" + Environment.NewLine + Environment.NewLine + 
+                            "Notes -" + Environment.NewLine + Environment.NewLine + 
+                            " - When the file is imported, there will be a slight delay. This is due to running many different functions to check errors." + Environment.NewLine + Environment.NewLine + 
+                            " - The clear button will clear out all conflicts from the textbox." + Environment.NewLine + Environment.NewLine + 
+                            " - The remove button will remove a selected conflict." + Environment.NewLine + Environment.NewLine + 
+                            " - When making changes to the excel sheet to fix conflicts, make sure to save the sheet after every change made.", "HELP");
+        }  
     }
 }

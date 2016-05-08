@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,10 +39,6 @@
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.bw = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,7 +71,7 @@
             this.Import.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.Import.Location = new System.Drawing.Point(187, 451);
             this.Import.Name = "Import";
-            this.Import.Size = new System.Drawing.Size(75, 23);
+            this.Import.Size = new System.Drawing.Size(75, 33);
             this.Import.TabIndex = 2;
             this.Import.Text = "Import...";
             this.Import.UseVisualStyleBackColor = true;
@@ -87,7 +82,7 @@
             this.clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.clear.Location = new System.Drawing.Point(280, 451);
             this.clear.Name = "clear";
-            this.clear.Size = new System.Drawing.Size(75, 23);
+            this.clear.Size = new System.Drawing.Size(75, 33);
             this.clear.TabIndex = 3;
             this.clear.Text = "Clear";
             this.clear.UseVisualStyleBackColor = true;
@@ -98,7 +93,7 @@
             this.remove.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.remove.Location = new System.Drawing.Point(372, 451);
             this.remove.Name = "remove";
-            this.remove.Size = new System.Drawing.Size(75, 23);
+            this.remove.Size = new System.Drawing.Size(75, 33);
             this.remove.TabIndex = 4;
             this.remove.Text = "Remove";
             this.remove.UseVisualStyleBackColor = true;
@@ -106,7 +101,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.Indigo;
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fIleToolStripMenuItem,
             this.aboutToolStripMenuItem,
@@ -129,7 +124,7 @@
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.importToolStripMenuItem.Text = "Import...";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
@@ -138,45 +133,20 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(118, 504);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(398, 23);
-            this.progressBar1.TabIndex = 6;
-            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label2.Location = new System.Drawing.Point(294, 530);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 17);
-            this.label2.TabIndex = 7;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // bw
-            // 
-            this.bw.WorkerReportsProgress = true;
-            this.bw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bw_DoWork);
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::CourseScheduleVerifier2._0.Properties.Resources._13148433_10207242623963076_1468980257_o;
             this.ClientSize = new System.Drawing.Size(634, 571);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.remove);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.Import);
@@ -207,10 +177,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label2;
-        private System.ComponentModel.BackgroundWorker bw;
     }
 }
 
